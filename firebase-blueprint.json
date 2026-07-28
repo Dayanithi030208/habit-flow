@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "theme": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "habits": {
+      "title": "Habits",
+      "description": "Habit definitions created by users",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "category": { "type": "string" },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "archived": { "type": "boolean" },
+        "targetFrequency": { "type": "number" },
+        "targetUnit": { "type": "string" },
+        "reminderTime": { "type": "string" }
+      },
+      "required": ["userId", "name", "category"]
+    },
+    "habitLogs": {
+      "title": "Habit Logs",
+      "description": "Daily status logs for habits",
+      "type": "object",
+      "properties": {
+        "habitId": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["completed", "partial", "missed"] },
+        "updatedAt": { "type": "string" },
+        "notes": { "type": "string" },
+        "value": { "type": "number" }
+      },
+      "required": ["habitId", "userId", "date", "status"]
+    },
+    "journals": {
+      "title": "Journals",
+      "description": "Daily reflective journal entries",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "content": { "type": "string" },
+        "mood": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "date", "content"]
+    },
+    "goals": {
+      "title": "Goals",
+      "description": "High-level goal tracking connected to habits or milestones",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "habitId": { "type": "string" },
+        "title": { "type": "string" },
+        "targetValue": { "type": "number" },
+        "currentValue": { "type": "number" },
+        "deadline": { "type": "string" },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "targetValue"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profile collection"
+    },
+    "/habits/{habitId}": {
+      "schema": "habits",
+      "description": "User habits"
+    },
+    "/habitLogs/{logId}": {
+      "schema": "habitLogs",
+      "description": "Daily habit completion records"
+    },
+    "/journals/{journalId}": {
+      "schema": "journals",
+      "description": "User daily reflections"
+    },
+    "/goals/{goalId}": {
+      "schema": "goals",
+      "description": "User high-level milestones and targets"
+    }
+  }
+}

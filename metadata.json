@@ -1,0 +1,6 @@
+{
+  "name": "Habit Flow",
+  "description": "A modern, minimal, and personal habit tracker designed for single users with clean aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
